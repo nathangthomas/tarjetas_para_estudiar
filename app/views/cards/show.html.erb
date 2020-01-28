@@ -1,0 +1,6 @@
+<%= link_to "all cards", cards_path %>
+<h1>Question: <%= "#{@card.question}" %></h1>
+<h2>Answer: <%= "#{@card.answer}" %></h2>
+
+<%= link_to "edit", edit_card_path(@card.id) %>
+<%= link_to "delete", card_path(@card.id), :method => :delete %>
