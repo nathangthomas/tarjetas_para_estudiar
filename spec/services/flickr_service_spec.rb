@@ -5,7 +5,7 @@ describe FlickrService do
     it "returns an image associated with a city" do
 
 
-      image = subject.image_of('denver,co')
+      image = subject.image_of('cat')
 
       expect(image).to be_an Hash
       expect(image[:photos][:photo].count).to eq(1)
