@@ -1,3 +1,4 @@
+<%= link_to "All Cards", cards_path %>
 <%= link_to "edit", edit_card_path(@card.id) %>
 <%= link_to "delete", card_path(@card.id), :method => :delete %>
 
@@ -6,10 +7,10 @@
   <div class="flip-card-inner">
     <div class="flip-card-front">
       <img src="" alt="image" style="width:300px;height:300px;">
-      <h1> <%= "#{@card.question}" %></h1>
+      <h1 class='question'> <%= "#{@card.question}" %></h1>
     </div>
     <div class="flip-card-back">
-      <h2> <%= "#{@card.answer}" %> </h2>
+      <h2 class='answer'> <%= "#{@card.answer}" %> </h2>
     </div>
   </div>
 </div>

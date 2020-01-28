@@ -45,12 +45,15 @@
    width: 100%;
    height: 100%;
    backface-visibility: hidden;
+   border: 1px solid black;
  }
 
  /* Style the front side (fallback if image is missing) */
  .flip-card-front {
    background-color: #bbb;
-   color: black;
+   color: white;
+   /* filter: grayscale(100); */
+
  }
 
  /* Style the back side */
@@ -58,4 +61,12 @@
    background-color: dodgerblue;
    color: white;
    transform: rotateY(180deg);
+ }
+
+ h1 span {
+     background-color: black;
+ }
+
+ .count {
+   text-align: left;
  }
