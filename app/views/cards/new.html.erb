@@ -1,0 +1,9 @@
+<%= form_tag('/cards/', method: :post) do %>
+
+<%= label_tag :question, 'Question' %>
+<%= text_field_tag :question, @card.question %>
+<%= label_tag :answer, 'Answer' %>
+<%= text_field_tag :answer, @card.answer %>
+
+<%= submit_tag 'Add Card'%>
+<% end %>

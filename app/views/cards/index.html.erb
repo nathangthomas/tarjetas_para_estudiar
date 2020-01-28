@@ -1,0 +1,14 @@
+<h1>All Cards</h1>
+<%= link_to 'Add A Card', new_card_path %>
+
+<h3><%= "Total Cards: #{@cards.length}" %></h3>
+<hr>
+
+<% @cards.each_with_index do |card, index| %>
+  <h4> <%= link_to "Card #{index +1}", card_path(card.id) %></h4>
+  <p><%= card.question %></p>
+  <p><%= card.answer %></p>
+  <%= link_to "edit", edit_card_path(card.id) %>
+  <%= link_to "delete", card_path(card.id), :method => :delete %>
+  <hr>
+<% end %>
