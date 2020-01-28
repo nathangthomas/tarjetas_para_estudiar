@@ -1,14 +1,20 @@
-<h1>All Cards</h1>
+<h1><%= "All #{@cards.length} Cards" %></h1>
 <%= link_to 'Add A Card', new_card_path %>
 
-<h3><%= "Total Cards: #{@cards.length}" %></h3>
-<hr>
-
 <% @cards.each_with_index do |card, index| %>
-  <h4> <%= link_to "Card #{index +1}", card_path(card.id) %></h4>
-  <p><%= card.question %></p>
-  <p><%= card.answer %></p>
-  <%= link_to "edit", edit_card_path(card.id) %>
-  <%= link_to "delete", card_path(card.id), :method => :delete %>
-  <hr>
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front" style="background-image: url(<%= FlikrFacade.new(card.answer).word_image.flickr_url %>); background-size: 800px 800px;">
+        <p class='count'> <%= "#{index +1}/#{@cards.length}" %> </p>
+        <h1> <span><%= card.question %> </span></h1>
+      </div>
+      <div class="flip-card-back" style="background-image: url(<%= FlikrFacade.new(card.answer).word_image.flickr_url %>); background-size: contain;">
+        <p class='count'> <%= "#{index +1}/#{@cards.length}" %> </p>
+        <h1> <span> <%= card.answer %> </span> </h1>
+        <%= link_to "edit", edit_card_path(card.id) %>
+        <%= link_to "delete", card_path(card.id), :method => :delete %>
+      </div>
+    </div>
+  </div>
+  <br>
 <% end %>
