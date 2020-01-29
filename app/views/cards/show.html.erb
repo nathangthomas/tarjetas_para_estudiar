@@ -1,6 +1,6 @@
-<%= link_to "All Cards", cards_path %>
-<%= link_to "edit", edit_card_path(@card.id) %>
-<%= link_to "delete", card_path(@card.id), :method => :delete %>
+<%= link_to "All Cards", deck_cards_path(params[:deck_id], @card.id) %>
+<%= link_to "edit", edit_deck_card_path(params[:deck_id], @card.id) %>
+<%= link_to "delete", deck_card_path(params[:deck_id], @card.id), :method => :delete %>
 
 
 <div class="flip-card">

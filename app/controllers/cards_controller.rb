@@ -1,7 +1,12 @@
 class CardsController < ApplicationController
 
   def index
-    @cards = Card.all
+    if params[:deck_id].nil?
+      @cards = Card.all
+    else
+      @deck = Deck.find(params[:deck_id])
+      @items = @deck.cards
+    end
   end
 
   def show
@@ -9,16 +14,14 @@ class CardsController < ApplicationController
   end
 
   def new
-    @card = Card.new
+    @deck = Deck.find(params[:deck_id])
   end
 
   def create
-    @card = Card.create(card_params)
-    if @card.save
-      redirect_to card_path(@card.id)
-    else
-      redirect_to new_card_path, alert: "Something went wrong. Please try agian"
-    end
+    @deck = Deck.find(params[:deck_id])
+    @deck.cards.create(card_params)
+
+    redirect_to deck_path(@deck.id)
   end
 
   def edit
@@ -29,19 +32,19 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
     @card.update(card_params)
 
-    redirect_to card_path(@card)
+    redirect_to deck_card_path(params[:deck_id], @card)
   end
 
   def destroy
     @card = Card.find(params[:id])
     @card.destroy
-    redirect_to cards_path
+    redirect_to deck_cards_path(params[:deck_id])
   end
 
   private
 
   def card_params
-    params.permit(:question, :answer)
+    params.permit(:question, :answer, :deck_id)
   end
 
 end

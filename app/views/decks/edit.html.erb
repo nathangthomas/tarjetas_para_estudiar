@@ -1,0 +1,9 @@
+<%= form_tag("/decks/#{@deck.id}", method: :patch) do %>
+
+<%= label_tag :title, 'Title' %>
+<%= text_field_tag :title, @deck.title %>
+<%= label_tag :description, 'Description' %>
+<%= text_field_tag :description, @deck.description %>
+
+<%= submit_tag 'Update Deck'%>
+<% end %>

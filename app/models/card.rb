@@ -1,5 +1,7 @@
 class Card < ApplicationRecord
 
-validates_presence_of :question,
-                      :answer
+  belongs_to :deck
+  validates_presence_of :question,
+                        :answer
+
 end
