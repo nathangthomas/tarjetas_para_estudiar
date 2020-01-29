@@ -1,4 +1,4 @@
-<%= form_tag("/cards/#{@card.id}", method: :patch) do %>
+<%= form_tag("/decks/#{params[:deck_id]}/cards/#{@card.id}", method: :patch) do %>
 
 <%= label_tag :question, 'Question' %>
 <%= text_field_tag :question, @card.question %>

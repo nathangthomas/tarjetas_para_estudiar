@@ -1,9 +1,9 @@
-<%= form_tag('/cards/', method: :post) do %>
+<%= form_tag("/decks/#{@deck.id}/cards/", method: :post) do %>
 
 <%= label_tag :question, 'Question' %>
-<%= text_field_tag :question, @card.question %>
+<%= text_field_tag :question  %>
 <%= label_tag :answer, 'Answer' %>
-<%= text_field_tag :answer, @card.answer %>
+<%= text_field_tag :answer  %>
 
 <%= submit_tag 'Add Card'%>
 <% end %>
