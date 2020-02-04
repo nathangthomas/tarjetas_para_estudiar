@@ -19,6 +19,7 @@ class CardsController < ApplicationController
 
   def create
     @deck = Deck.find(params[:deck_id])
+    # @card = @deck.cards.last.id + 1
     @deck.cards.create(card_params)
 
     redirect_to deck_path(@deck.id)
@@ -44,10 +45,14 @@ class CardsController < ApplicationController
 
   def flop
     @card = Card.find(params[:card_id])
-    if @card.correct == false
-      @card.correct = true
-    end
+    @card.correct = true
+    @card.save
+    redirect_to deck_study_index_path(params[:deck_id])
+  end
 
+  def back
+    @card = Card.find(params[:card_id])
+    @card.correct = false
     @card.save
     redirect_to deck_study_index_path(params[:deck_id])
   end
