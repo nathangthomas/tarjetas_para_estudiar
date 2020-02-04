@@ -1,16 +1,22 @@
-<h1><%= "You have #{@decks.length} decks." %></h1>
+<% if @decks.length == 1 %>
+  <h1><%= "You have #{@decks.length} deck." %></h1>
+<% else %>
+  <h1><%= "You have #{@decks.length} decks." %></h1>
+<% end  %>
+
 <%= link_to 'Add A Deck', new_deck_path %>
 
 <% @decks.each_with_index do |deck, index| %>
     <div class="card">
       <div class="container">
-        <h4><b><%= deck.title %></b></h4>
+        <h2><b><%= deck.title %></b></h2>
         <p><%= deck.description %></p>
-        <p><%= deck.cards.length %></p>
+        <p><%= "#{deck.cards.length} cards" %></p>
         <%= link_to 'edit', edit_deck_path(deck.id) %>
         <%= link_to 'delete', deck_path(deck.id), :method => :delete %>
         <%= link_to 'Add A Card', new_deck_card_path(deck.id) %>
         <%= link_to 'All Cards', deck_cards_path(deck.id) %>
+        <%= link_to 'Study', deck_study_index_path(deck.id) %>
       </div>
     </div>
   <br>

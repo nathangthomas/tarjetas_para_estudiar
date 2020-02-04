@@ -3,8 +3,11 @@ require 'rails_helper'
 describe 'cards' do
   before :each do
      @deck_1 = Deck.create!(title: 'Words', description: 'Just some words.')
+     @deck_2 = Deck.create!(title: 'More Words', description: 'Another deck of words.')
      @card_1 = Card.create!(question: 'la pregunta', answer: 'the question', deck_id: @deck_1.id)
      @card_2 = Card.create!(question: 'la respuesta', answer: 'the answer', deck_id: @deck_1.id)
+     @card_3 = Card.create!(question: 'el codo', answer: 'elbow', deck_id: @deck_2.id)
+
    end
 
    it 'Index' do
@@ -19,6 +22,19 @@ describe 'cards' do
       expect(page).to have_link("edit")
       expect(page).to have_link("delete")
    end
+
+  it 'Cards remain in their respective decks' do
+    visit("/decks/#{@deck_2.id}/cards")
+
+    expect(page).to_not have_content(@card_1.question)
+    expect(page).to_not have_content(@card_1.answer)
+    expect(page).to_not have_content(@card_2.question)
+    expect(page).to_not have_content(@card_2.answer)
+    
+    expect(page).to have_content(@card_3.question)
+    expect(page).to have_content(@card_3.answer)
+
+  end
 
    it 'Show' do
      visit("/decks/#{@deck_1.id}/cards/#{@card_1.id}")
@@ -37,6 +53,7 @@ describe 'cards' do
      fill_in :question, with: 'el codo'
      fill_in :answer, with: 'elbow'
      click_on 'Add Card'
+     save_and_open_page
      expect(page).to have_content("el codo")
 
      click_link 'edit'

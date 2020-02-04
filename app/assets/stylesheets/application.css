@@ -52,7 +52,7 @@
  .flip-card-front {
    background-color: #bbb;
    color: white;
-   /* filter: grayscale(100); */
+  /* filter: grayscale(100); */
 
  }
 
@@ -63,8 +63,9 @@
    transform: rotateY(180deg);
  }
 
- h1 span {
-     background-color: black;
+ .card-text {
+     background-color: rgba(0, 0, 0, 0.3);
+     width: auto;
  }
 
  .count {
