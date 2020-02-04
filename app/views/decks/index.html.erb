@@ -11,6 +11,7 @@
         <%= link_to 'delete', deck_path(deck.id), :method => :delete %>
         <%= link_to 'Add A Card', new_deck_card_path(deck.id) %>
         <%= link_to 'All Cards', deck_cards_path(deck.id) %>
+        <%= link_to 'Study', deck_study_index_path(deck.id) %>
       </div>
     </div>
   <br>
