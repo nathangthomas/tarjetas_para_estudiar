@@ -1,13 +1,22 @@
 <div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front" style="background-image: url(<%= FlikrFacade.new(@current_card.answer).word_image.flickr_url %>); background-size: 800px 800px;">
-      <h1> <span><%= @current_card.question %> </span></h1>
+      <div class="card-text">
+        <h1> <%= @current_card.question %> </h1>
+      </div>
     </div>
     <div class="flip-card-back" style="background-image: url(<%= FlikrFacade.new(@current_card.answer).word_image.flickr_url %>); background-size: contain;">
-      <h1> <span> <%= @current_card.answer %> </span> </h1>
+      <div class="card-text">
+        <h1> <%= @current_card.answer %> </h1>
+      </div>
+      <%= link_to "Incorrect", deck_card_back_path(params[:deck_id], @current_card.id)%>
       <%= link_to "Correct", deck_card_flop_path(params[:deck_id], @current_card.id)%>
     </div>
   </div>
 </div>
 
-<p><%= "#{@correct_count} / #{@cards.length} correct" %></p>
+<% if @correct_count == 0 %>
+  <p><%= "Let's begin!" %></p>
+<% else %>
+  <p><%= "You have gotten #{@correct_count} of #{@cards.length} cards correct." %></p>
+<% end  %>
