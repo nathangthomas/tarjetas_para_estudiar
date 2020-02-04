@@ -41,6 +41,17 @@ class CardsController < ApplicationController
     redirect_to deck_cards_path(params[:deck_id])
   end
 
+
+  def flop
+    @card = Card.find(params[:card_id])
+    if @card.correct == false
+      @card.correct = true
+    end
+
+    @card.save
+    redirect_to deck_study_index_path(params[:deck_id])
+  end
+
   private
 
   def card_params
