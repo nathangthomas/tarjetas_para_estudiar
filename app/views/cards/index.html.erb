@@ -1,25 +1,30 @@
-<h1><%= "All #{@deck.title} Cards" %></h1>
-<%= link_to 'Add a Card', new_deck_card_path(params[:deck_id]) %>
-<%= link_to 'Back to Decks', decks_path %>
+<div class="main">
+  <div class="title">
+    <h1><%= "All #{@deck.title} Cards" %></h1>
+    <%= link_to 'Add a Card', new_deck_card_path(params[:deck_id]) %>
+    <%= link_to 'Back to Decks', decks_path %>
+  </div>
 
-<% @deck.cards.each_with_index do |card, index| %>
-  <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front" style="background-image: url(<%= FlikrFacade.new(card.answer).word_image.flickr_url %>); background-size: 800px 800px;">
-        <p class='count'> <%= "#{index +1}/#{@deck.cards.length}" %> </p>
-        <div class="card-text">
-          <h1> <%= card.question %> </h1>
+  <% @deck.cards.each_with_index do |card, index| %>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-image: url(<%= FlikrFacade.new(card.answer).word_image.flickr_url %>); background-size: 800px 800px;">
+          <p class='count'> <%= "#{index +1}/#{@deck.cards.length}" %> </p>
+          <div class="card-text">
+            <h1> <%= card.question %> </h1>
+          </div>
         </div>
-      </div>
-      <div class="flip-card-back" style="background-image: url(<%= FlikrFacade.new(card.answer).word_image.flickr_url %>); background-size: contain;">
-        <p class='count'> <%= "#{index +1}/#{@deck.cards.length}" %> </p>
-        <div class="card-text">
-          <h1> <%= card.answer %> </h1>
+        <div class="flip-card-back" style="background-image: url(<%= FlikrFacade.new(card.answer).word_image.flickr_url %>); background-size: contain;">
+          <p class='count'> <%= "#{index +1}/#{@deck.cards.length}" %> </p>
+          <div class="card-text">
+            <h1> <%= card.answer %> </h1>
+          </div>
+          <%= link_to "edit", edit_deck_card_path(params[:deck_id], card.id) %>
+          <%= link_to "delete", deck_card_path(params[:deck_id], card.id), :method => :delete %>
         </div>
-        <%= link_to "edit", edit_deck_card_path(params[:deck_id], card.id) %>
-        <%= link_to "delete", deck_card_path(params[:deck_id], card.id), :method => :delete %>
       </div>
     </div>
+    <br>
+  <% end %>
   </div>
-  <br>
-<% end %>
+</div>
